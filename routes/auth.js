@@ -14,7 +14,7 @@ router.get('/signup', (req, res) => {
     } = req.body;
 
     if (!email || !password || !name) {
-        res.json({
+        res.status(422).json({
             error: "please add allthe fields"
         });
     }
