@@ -1,0 +1,39 @@
+"use strict";
+
+var express = require('express');
+
+var app = express();
+var PORT = 5000;
+
+var mongoose = require('mongoose');
+
+var _require = require('./keys'),
+    MONGOURI = _require.MONGOURI;
+
+require('./Models/user');
+
+app.use(require('./'));
+mongoose.connect(MONGOURI, {
+  useNewUrlParser: true // useUnifiedTopology: true
+
+});
+mongoose.connection.on('connected', function () {
+  console.log("connected to mongo");
+});
+mongoose.connection.on('connected', function (err) {
+  console.log("err connecting", err);
+});
+
+var customMiddleware = function customMiddleware(req, res, next) {
+  console.log("Middleware Executed"); // console.log(req);
+
+  next();
+};
+
+app.use(customMiddleware);
+app.get('/', function (req, res) {
+  res.send("hello to home");
+});
+app.listen(PORT, function () {
+  console.log("server running on ".concat(PORT));
+});
