@@ -12,17 +12,16 @@ var _require = require('./keys'),
 
 require('./Models/user');
 
-app.use(require('./'));
-mongoose.connect(MONGOURI, {
-  useNewUrlParser: true // useUnifiedTopology: true
-
-});
-mongoose.connection.on('connected', function () {
-  console.log("connected to mongo");
-});
-mongoose.connection.on('connected', function (err) {
-  console.log("err connecting", err);
-});
+app.use(require('./')); // mongoose.connect(MONGOURI, {
+//     useNewUrlParser: true,
+//     // useUnifiedTopology: true
+// })
+// mongoose.connection.on('connected',()=>{
+//     console.log("connected to mongo");
+// })
+// mongoose.connection.on('connected',(err)=>{
+//     console.log("err connecting",err);
+// })
 
 var customMiddleware = function customMiddleware(req, res, next) {
   console.log("Middleware Executed"); // console.log(req);
