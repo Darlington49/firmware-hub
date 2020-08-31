@@ -14,7 +14,8 @@ router.get('/signup', (req, res) => {
     } = req.body;
 
     if (!email || !password || !name) {
-        res.status(422).json({
+        //unprocessable Entity
+        res.status(422).json({ 
             error: "please add allthe fields"
         });
     }
