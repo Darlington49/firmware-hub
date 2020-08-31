@@ -8,7 +8,7 @@ const {
 
 require('./Models/user');
 
-app.use(require('./'))
+app.use(require('./routes/auth'))
 // mongoose.connect(MONGOURI, {
 //     useNewUrlParser: true,
 //     // useUnifiedTopology: true
@@ -30,9 +30,6 @@ const customMiddleware = (req, res, next) => {
 
 app.use(customMiddleware);
 
-app.get('/', (req, res) => {
-    res.send("hello to home")
-})
 
 app.listen(PORT, () => {
     console.log(`server running on ${PORT}`)

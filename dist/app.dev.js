@@ -12,7 +12,7 @@ var _require = require('./keys'),
 
 require('./Models/user');
 
-app.use(require('./')); // mongoose.connect(MONGOURI, {
+app.use(require('./routes/auth')); // mongoose.connect(MONGOURI, {
 //     useNewUrlParser: true,
 //     // useUnifiedTopology: true
 // })
@@ -30,9 +30,6 @@ var customMiddleware = function customMiddleware(req, res, next) {
 };
 
 app.use(customMiddleware);
-app.get('/', function (req, res) {
-  res.send("hello to home");
-});
 app.listen(PORT, function () {
   console.log("server running on ".concat(PORT));
 });
