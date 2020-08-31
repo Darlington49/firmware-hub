@@ -11,18 +11,18 @@ require('./Models/user');
 app.use(express.json())
 app.use(require('./routes/auth'))
 
-// mongoose.connect(MONGOURI, {
-//     useNewUrlParser: true,
-//     // useUnifiedTopology: true
-// })
+mongoose.connect(MONGOURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
-// mongoose.connection.on('connected',()=>{
-//     console.log("connected to mongo");
-// })
+mongoose.connection.on('connected',()=>{
+    console.log("connected to mongo");
+})
 
-// mongoose.connection.on('connected',(err)=>{
-//     console.log("err connecting",err);
-// })
+mongoose.connection.on('connected',(err)=>{
+    console.log("err connecting",err);
+})
 
 const customMiddleware = (req, res, next) => {
     console.log("Middleware Executed");
