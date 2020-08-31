@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model("User");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {JWT_SECRET} = require('../keys');
 
 router.get('/', (req, res) => {
     res.send("hello")
@@ -81,9 +82,11 @@ router.post('/signin', (req, res) => {
             bcrypt.compare(password, saveduser.password)
                 .then(doMatch => {
                     if (doMatch) {
-                        res.json({
-                            message: "successfuly singned"
-                        })
+                        // res.json({
+                        //     message: "successfuly singned"
+                        // })
+                        const token = jwt.sign({_id:saveduser._id},JWT_SECRET);
+                        res.json({token});
                     } else {
                         return res.status(422).json({
                             error: "Invalid Email or password"
