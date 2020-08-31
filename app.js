@@ -8,6 +8,7 @@ const {
 
 require('./Models/user');
 
+app.use(express.json())
 app.use(require('./routes/auth'))
 
 // mongoose.connect(MONGOURI, {

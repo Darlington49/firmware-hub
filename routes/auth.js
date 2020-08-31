@@ -7,7 +7,21 @@ router.get('/', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.send(req.body.name)
+    const {
+        name,
+        email,
+        password
+    } = req.body;
+
+    if (!email || !password || !name) {
+        res.json({
+            error: "please add allthe fields"
+        });
+    }
+
+    res.json({
+        message: "Successfuly post"
+    });
 });
 
 
