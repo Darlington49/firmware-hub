@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../Middleware/requireLogin');
 
-router.post('createpost', requireLogin, (req, res) => {
+router.post('/createpost', requireLogin, (req, res) => {
     const {
         title,
         body
