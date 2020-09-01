@@ -2,7 +2,21 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../Middleware/requireLogin');
-const Post =  mongoose.model("Post")
+const Post = mongoose.model("Post")
+
+
+router.get('/allpost', (req, res) => {
+    Post.find()
+    .populate("postedBy","_id name")
+        .then(Posts => {
+            res.json({
+                Posts
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 router.post('/createpost', requireLogin, (req, res) => {
     const {
@@ -14,12 +28,13 @@ router.post('/createpost', requireLogin, (req, res) => {
             error: "please add all the fields"
         });
     }
-    console.log("connection from ",req.user)
+    console.log("connection from ", req.user)
     //res.send("ok")
+    req.user.password = undefined
     const post = new Post({
-       title,
-       body,
-       postedBy:req.user
+        title,
+        body,
+        postedBy: req.user
     });
     post.save().then(result => {
             res.json({
