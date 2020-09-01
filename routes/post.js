@@ -15,20 +15,20 @@ router.post('/createpost', requireLogin, (req, res) => {
         });
     }
     console.log("connection from ",req.user)
-    res.send("ok")
-    // const post = new Post({
-    //     title,
-    //     body,
-    //     postedBy: req.user
-    // });
-    // post.save().then(result => {
-    //         res.json({
-    //             post: result
-    //         })
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
+    //res.send("ok")
+    const post = new Post({
+       title,
+       body,
+       postedBy:req.user
+    });
+    post.save().then(result => {
+            res.json({
+                post: result
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
 });
 module.exports = router;
