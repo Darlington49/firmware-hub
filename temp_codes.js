@@ -10,3 +10,11 @@
 // }
 
 // app.use(customMiddleware);
+
+// router.get('/protected',requireLogin,(req,res)=>{
+//     res.json("hello user")
+// })
+
+// router.get('/', (req, res) => {
+//     res.send("hello")
+// });
