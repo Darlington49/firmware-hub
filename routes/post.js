@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../Middleware/requireLogin');
+const Post =  mongoose.model("Post")
 
 router.post('/createpost', requireLogin, (req, res) => {
     const {
@@ -13,19 +14,21 @@ router.post('/createpost', requireLogin, (req, res) => {
             error: "please add all the fields"
         });
     }
-    const post = new post({
-        title,
-        body,
-        postedBy: req.user
-    });
-    post.save().then(result => {
-            res.json({
-                post: result
-            })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    console.log("connection from ",req.user)
+    res.send("ok")
+    // const post = new Post({
+    //     title,
+    //     body,
+    //     postedBy: req.user
+    // });
+    // post.save().then(result => {
+    //         res.json({
+    //             post: result
+    //         })
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
 
 });
 module.exports = router;

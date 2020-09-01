@@ -21,4 +21,4 @@ const postSchema = new mongoose.Schema({
 });
 
 mongoose.model("Post", postSchema);
-// require('./Models/post'); // to add to the app.js
+// require('./Models/post');
