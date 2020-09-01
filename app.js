@@ -7,11 +7,6 @@ const {
     MONGOURI
 } = require('./keys');
 
-require('./Models/user');
-
-app.use(express.json())
-app.use(require('./routes/auth'))
-
 mongoose.connect(MONGOURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -25,19 +20,9 @@ mongoose.connection.on('connected',(err)=>{
     console.log("err connecting",err);
 })
 
-// const Cat = mongoose.model('Cat', { name: String });
-
-// const kitty = new Cat({ name: 'Zildjian' });
-// kitty.save().then(() => console.log('meow'));
-
-const customMiddleware = (req, res, next) => {
-    console.log("Middleware Executed");
-    // console.log(req);
-    next();
-}
-
-app.use(customMiddleware);
-
+require('./Models/user');
+app.use(express.json());
+app.use(require('./routes/auth'));
 
 app.listen(PORT, () => {
     console.log(`server running on ${PORT}`)
