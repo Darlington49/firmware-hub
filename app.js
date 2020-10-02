@@ -24,6 +24,11 @@ require('./Models/user');
 require('./Models/post');
 
 app.use(express.json());
+// respond with "hello world" when a GET request is made to the homepage
+
+app.get('/', function(req, res) {
+    res.send('hello world');
+  });
 
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
