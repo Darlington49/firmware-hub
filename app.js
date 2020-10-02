@@ -30,6 +30,10 @@ app.get('/', function(req, res) {
     res.send('hello world');
   });
 
+app.get('/home', function(req, res) {
+    res.send('home');
+  });
+
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
 
