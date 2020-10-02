@@ -37,6 +37,6 @@ app.get('/home', function(req, res) {
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`server running on ${PORT}`)
 })
